@@ -2,14 +2,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Number {
+public class ReverceArray {
 
     public void getNumbers() {
         Scanner scanner = new Scanner(System.in);
-        scanner = new Scanner(System.in);
         ArrayList<Integer> integer = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            System.out.print("Enter number " + (i + 1) + ": ");
+        while (integer.size() < 10) {
             int number = scanner.nextInt();
             integer.add(number);
         }
@@ -21,8 +19,7 @@ public class Number {
     }
 
     public static void main(String[] args) {
-        Number number = new Number();
-        number.getNumbers();
-
+        ReverceArray reverceArray = new ReverceArray();
+        reverceArray.getNumbers();
     }
 }
