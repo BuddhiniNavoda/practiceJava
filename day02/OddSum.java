@@ -1,27 +1,36 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class OddSum {
 
-    public void GetInput() {
+    public void array() {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> numbers = new ArrayList<>();
-        ArrayList<Integer> oddNumbers = new ArrayList<>();
+        int[] arr = new int[10];
+        int[] oddarry = new int[10];
+        int oddIndex = 0;
 
-        for (int i = 0; i < 8; i++) {
-            int value = sc.nextInt();
-            numbers.add(value);
+        for (int i = 0; i < 10; i++) {
+            arr[i] = sc.nextInt();
 
-            if (value % 2 != 0) {
-                oddNumbers.add(value);
-                
+            if (arr[i] % 2 != 0) {
+                oddarry[oddIndex] = arr[i];
+                oddIndex++;
+
             }
         }
-        System.out.println("Odd numbers :" + oddNumbers);
-        System.out.println("Array List :" + numbers);
+        System.out.println("Odd numbers :" + Arrays.toString(Arrays.copyOf(oddarry, oddIndex)));// Odd numbers :[1, 0,
+                                                                                                // 3, 0, 5, 0, 7, 0, 9,
+                                                                                                // 0] out put give like
+                                                                                                // this formate so we
+                                                                                                // use
+                                                                                                // Arrays.copyOf(oddarry,
+                                                                                                // oddIndex
+        System.out.println("Array List :" + Arrays.toString(arr));
+
+    }
 
     public static void main(String[] args) {
         OddSum oddsum = new OddSum();
-        oddsum.GetInput();
+        oddsum.array();
     }
 }
