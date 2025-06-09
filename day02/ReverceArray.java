@@ -4,7 +4,7 @@ import java.util.Collections;
 
 public class ReverceArray {
 
-    public void getNumbers() {
+    public void array() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Integer> integer = new ArrayList<>();
         while (integer.size() < 10) {
@@ -20,6 +20,6 @@ public class ReverceArray {
 
     public static void main(String[] args) {
         ReverceArray reverceArray = new ReverceArray();
-        reverceArray.getNumbers();
+        reverceArray.array();
     }
 }
