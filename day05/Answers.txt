@@ -78,16 +78,26 @@ transform each elements in the stream using given function, produce a new stream
     Convert the array into a stream
     Use the map() method to square each number
     Convert the result into a list and print it
+
+	- done 
 10. Modify the above program to take 7 numbers as input from the user.
+	- done 
 11. Improve the program further by handling non-numeric user input using try-catch. Focus on using the correct exception types.
+	-done 
 
 12. What is the purpose of the filter() method in streams?
 	to filer elements of stream
 
 13. Take 7 numbers as input from the user, convert them into a stream, use filter() to remove numbers less than 10, and print the result.
+	-done
 14, Take 9 numbers from the user, add 5 to each, then remove numbers greater than 9 after the addition.
+	-done
 15. Take 6 numbers from the user, remove numbers less than 8, square the remaining numbers, add 9 to each, and print the results.
+	-done
 16. What is the use of the sorted() method in streams?
+	
+
+
 17.Take 10 numbers from the user, remove values less than 8, square the remaining values, and sort them in:
     Ascending order
     Descending order
