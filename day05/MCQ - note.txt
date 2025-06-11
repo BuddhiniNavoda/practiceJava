@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ____________________________________________________________________________
 MCQ 
 
@@ -49,3 +50,56 @@ https://www.javaguides.net/2023/07/java-stream-api-quiz-multiple-choice.html
 * Streams in Java cannot be reused
 
  
+=======
+____________________________________________________________________________
+MCQ 
+
+https://www.javaguides.net/2023/07/java-stream-api-quiz-multiple-choice.html
+
+----------------------------------------------------------------------------
+
+
+* stream is the processing sequence of elements in to functional style(main purpose of stream API)
+
+* stream don't store elements(immutable(cant be change), can be parallel,infinite)
+
+*  stream() methods to create a stream from a collection (list, set)
+
+*  reduce()- reduce the elements of stream into single value/apply an accumulation function to the elements of a stream, combining them into a single result. 
+
+* filter() - to filer elements of stream
+
+* map() - transform each elements in the stream using given function, produce a new stream of transformed elements
+
+* collect() - collect the results of a stream operation  into a list, set  ...
+
+* forEach()- terminal operation
+	     
+	     iterates over each elements in the stream and performs the specific action
+
+* findFirst() - find 1st elements of the steam and contain option when the elements is exists
+
+* distinct() - remove duplicate elements from stream
+
+* anyMatch()- short- circuiting terminal operation
+	      return true if any elements in the stream matches the given predicate
+* toArray()- convert elements of the stream into array
+
+* sorted()- used to sort the elements in a stream in natural order or using a custom comparator
+
+* allMatch() method is used to check if all elements in a stream match the given predicate
+
+*  skip() - skip the first n elements in a stream and return a stream containing the remaining elements.
+
+* The peek() - used to view elements of a stream without modifying them(debugging purpose)
+
+* The limit() - used to limit the number of elements in a stream to the specified size.
+
+*max() - used to find the maximum element in a stream based on a given comparator.
+
+* A pipeline in the context of the Stream - a series of operations performed on a stream
+
+* Streams in Java cannot be reused
+
+ 
+>>>>>>> 1fc4bd12f6a14dd745a621fae5dfa2dc33a06abf
