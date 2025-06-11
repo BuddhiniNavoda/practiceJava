@@ -95,12 +95,14 @@ transform each elements in the stream using given function, produce a new stream
 15. Take 6 numbers from the user, remove numbers less than 8, square the remaining numbers, add 9 to each, and print the results.
 	-done
 16. What is the use of the sorted() method in streams?
-	
 
+	-used to sort the elements in a stream in natural order or using a custom comparator
 
 17.Take 10 numbers from the user, remove values less than 8, square the remaining values, and sort them in:
     Ascending order
     Descending order
+
+		-done
 
 19. What is the distinct() method in Java streams?
 
