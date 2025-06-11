@@ -1,0 +1,105 @@
+1. What is a lambda expression in Java?
+	lambda expression is an anonymous function that takes in parameters and return a value
+	
+2. Why do we need declarative programming?
+	describe what the programe should do, making it easier to read, understand and reason.
+	dont need to handle every steps of the process-just declare goal
+	hide implementation details 
+
+
+3. How does Java support declarative programming?
+	used method references  to simplify function passing
+	used lamdha expression pass function as paramertes 
+	
+
+	 
+4. If we have an array called studentWeights, how can we convert it into a stream in Java?
+
+	make a array using value (studentWeights) and convert it to array using stream() method.
+	 Integer[] weights = {12,34,56,67,89}
+	 Stream<Integer> stream = Array.Stream(weights)
+
+5. What types of data structures can be converted into Java streams? (e.g., array, list, LinkedList, ArrayList, Map, Set).
+Array:
+Integer[] weights = {12,34,56,67,89}
+Stream<Integer> stream = Array.Stream(weights)
+
+ArrayList:
+Arraylist<integer> num = new ArrayList<>()
+num.add(12);
+num.add(23);
+
+Stream<Interger> weights =num.Stream();
+
+List:
+List<String> list = Array.asList("A","B","C");
+Stream<String> stream = list.stream()
+
+(Arrays.asList() is fixed size. so we dont allow add or remove elements but Use new List(Array.asList()) now we can add or remove element)
+
+Set:
+Set<Integer> set = new HashSet<>(Set.of(1, 2, 3));
+set.add(4);
+set.stream()
+   .filter(n -> n % 2 != 0)
+   .forEach(System.out::println);  // prints 1 and 3
+
+Map:
+Map<String, Integer> map = Map.of("A", 1, "B", 2);
+Stream<Map.Entry<String, Integer>> entryStream = map.entrySet().stream();
+
+
+
+6. How do you create a stream from scratch (a "pure stream")?
+7. How do you convert a stream into a list?
+	use the collect() method with Collectors.toList()
+	should import (import java.util.stream.Collectors;)
+
+ex01: 
+Stream<String> stream = Stream.of("A", "B", "C");
+List<String> list = stream.collect(Collectors.toList());
+
+System.out.println(list);  // Output: [A, B, C]
+
+ex02:
+List<Integer> list = Stream.iterate(1, n -> n + 1)
+                           .limit(5)
+                           .collect(Collectors.toList());
+
+System.out.println(list);  // Output: [1, 2, 3, 4, 5]
+
+	
+
+8. What is the purpose of the map() method in streams?
+
+transform each elements in the stream using given function, produce a new stream of transformed elements
+
+9. Create an array with 7 random numbers. Then:
+    Convert the array into a stream
+    Use the map() method to square each number
+    Convert the result into a list and print it
+10. Modify the above program to take 7 numbers as input from the user.
+11. Improve the program further by handling non-numeric user input using try-catch. Focus on using the correct exception types.
+
+12. What is the purpose of the filter() method in streams?
+	to filer elements of stream
+
+13. Take 7 numbers as input from the user, convert them into a stream, use filter() to remove numbers less than 10, and print the result.
+14, Take 9 numbers from the user, add 5 to each, then remove numbers greater than 9 after the addition.
+15. Take 6 numbers from the user, remove numbers less than 8, square the remaining numbers, add 9 to each, and print the results.
+16. What is the use of the sorted() method in streams?
+17.Take 10 numbers from the user, remove values less than 8, square the remaining values, and sort them in:
+    Ascending order
+    Descending order
+
+19. What is the distinct() method in Java streams?
+
+	remove duplicate elements from stream
+
+20. Take a list of numbers from the user, remove duplicates using distinct(), and square the remaining values.
+
+21. What is the purpose of the reverse() method in Java streams? Is there a built-in method for this?
+
+22. What are the main benefits of using Java Streams?
+
+
