@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class ProcessNumbers {
 
@@ -16,9 +16,10 @@ public class ProcessNumbers {
         System.out.println("Original array: " + Arrays.toString(numbers));
 
         Arrays.stream(numbers).forEach(System.out::println);
-        System.out.println("Squares of the numbers:");
+
         Arrays.stream(numbers)
                 .map(n -> n * n)
                 .forEach(System.out::println);
+
     }
 }

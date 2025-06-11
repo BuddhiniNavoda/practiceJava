@@ -17,19 +17,19 @@
 
 	make a array using value (studentWeights) and convert it to array using stream() method.
 	 Integer[] weights = {12,34,56,67,89}
-	 Stream<Integer> stream = Array.Stream(weights)
+	 Stream<Integer> stream = Array.stream(weights)
 
 5. What types of data structures can be converted into Java streams? (e.g., array, list, LinkedList, ArrayList, Map, Set).
 Array:
 Integer[] weights = {12,34,56,67,89}
-Stream<Integer> stream = Array.Stream(weights)
+Stream<Integer> stream = Array.stream(weights)
 
 ArrayList:
 Arraylist<integer> num = new ArrayList<>()
 num.add(12);
 num.add(23);
 
-Stream<Interger> weights =num.Stream();
+Stream<Interger> weights =num.stream();
 
 List:
 List<String> list = Array.asList("A","B","C");
