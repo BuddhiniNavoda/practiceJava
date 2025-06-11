@@ -109,9 +109,22 @@ transform each elements in the stream using given function, produce a new stream
 	remove duplicate elements from stream
 
 20. Take a list of numbers from the user, remove duplicates using distinct(), and square the remaining values.
-
+	-done
 21. What is the purpose of the reverse() method in Java streams? Is there a built-in method for this?
+	no; Java Streams do not have a built-in .reverse() method directly.
+
+	ex:
+	List<Integer> reversed = list.stream()
+    .sorted(Comparator.reverseOrder())
+    .collect(Collectors.toList());
+
 
 22. What are the main benefits of using Java Streams?
+
+	Avoid for-loops and temporary variables.
+	Supports operations like map, filter, reduce, flatMap, etc.
+	Stream pipelines don’t modify the original data — making your code safer and easier to test.
+
+
 
 
