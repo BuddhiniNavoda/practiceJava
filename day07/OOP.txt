@@ -1,21 +1,122 @@
-1. What is OOP?
-    What does OOP stand for?
+1. What is OOP? 
+    What does OOP stand for?  
+    Object Oriented Programming that way of writting programm by creating object that represent real world thing 
+
     Why do we use Object-Oriented Programming?
+    it helps to reduce complexity of code and help to understand code easier  and maintained.
+    helips to reusing code
+
     What are the main ideas behind OOP?
+    there are 4 main concepts such as 
+    Encapsulation : hiding details inside an object and show only necessary parts 
+    Inheritance: reuse code from one class in another class
+    Polymorphism : one action behaving  differently based on the object. 
+    Abstraction : showing only important features.
 
 2. What are the 4 pillars of OOP?
+    inheritance , Polymorphism, Encapsulation , Abstraction
+
 
 3. What is Encapsulation, Inheritance, Polymorphism, and Abstraction?
     a. What is Encapsulation in Java?
+        hiding the internal details of the class and only allowing access throught the public method.
+
         Why is it useful?
+        keeps data safe with unwanted changes.
+        make code easier to understand and maintained
+        helps with data hiding .
+
         Give a simple code example.
 
+        Class Student {
+            private String name; //private= hiding from outside
+
+            public String getName(){
+                return name;
+            }
+
+            public void setName(String name){
+                thi. name= name;
+            }
+        }
+
+        Student child = new Student();
+        child.setName(pawan);
+        System.out.println(child.getName());
+
     b. What is Inheritance in Java?
+    Allows one class to get properties and behavior from another class 
+
+    inheritance means allowed
         What is a superclass and a subclass?
+        superClass : parent class
+        subclass: child class
+
+        child class have access to  get properties and behavior (methods) from parents class.
+
         Show an example with two classes.
+
+        ClasS Animal{
+            public void eat(){
+                System.out.println("Animal is eating")
+            }
+        }
+
+        Class Dog extends Animal{
+            public void bark(){
+                System.out.println("dog bark")
+            }
+        }
+
+        Dog rex = new Dog ();
+        rex.eat();
+        rex.bark();
+
     c. What is Polymorphism?
+
+    one thing id behaving in many ways . it allow to same methods name to do different things based on object or class.
+
         What are the two types: compile-time and run-time?
+        compile-time : method Overloading
+        run time : method Overriding
+
         Give a simple code example.
+
+        // Overloading
+
+        Class Calculator {
+            int add (int a, int b){
+                return a+b;
+            }
+
+            double  add(double a, double b){
+                return a+b;
+            }
+        }
+
+        Calculator sum = new Calculator();
+        System.out.println(sum.add(1,2));
+        System.out.println(sum.add(1.5, 3.6))
+
+        // Overriding -Same method name, same parameters, but different behavior in subclass.
+
+            class Animal {
+                    void sound() {
+                        System.out.println("Animal makes a sound");
+                    }
+                }
+
+            class Cat extends Animal {
+                    void sound() {
+                        System.out.println("Cat meows");
+                    }
+                }
+
+             
+                Animal a = new Cat(); 
+                a.sound();  
+
+
     d. What is Abstraction?
         How do we achieve abstraction in Java?
         Show a code example using abstract classes or interface.

@@ -1,0 +1,4 @@
+b1 - Effective Java by Joshua Bloch ($45.99)
+b2 - Clean Code by Robert C. Martin ($39.99)
+b3 - Introduction to Algorithms by Thomas H. Cormen ($89.50)
+b4 - Design Patterns by Erich Gamma et al. ($54.95)
