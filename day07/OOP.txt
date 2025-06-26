@@ -1,0 +1,78 @@
+1. What is OOP?
+    What does OOP stand for?
+    Why do we use Object-Oriented Programming?
+    What are the main ideas behind OOP?
+
+2. What are the 4 pillars of OOP?
+
+3. What is Encapsulation, Inheritance, Polymorphism, and Abstraction?
+    a. What is Encapsulation in Java?
+        Why is it useful?
+        Give a simple code example.
+
+    b. What is Inheritance in Java?
+        What is a superclass and a subclass?
+        Show an example with two classes.
+    c. What is Polymorphism?
+        What are the two types: compile-time and run-time?
+        Give a simple code example.
+    d. What is Abstraction?
+        How do we achieve abstraction in Java?
+        Show a code example using abstract classes or interface.
+
+4. What is method Overriding and Overloading?
+    a. What is Method Overloading in Java?
+        When do we use it?
+        Show a code example.
+    b. What is Method Overriding in Java?
+        When do we use it?
+        Show a code example.
+
+5. What is the difference between an Interface and an Abstract Class in Java?
+        What is an interface?
+        What is an abstract class?
+        How are they different?
+        When should we use each?
+
+6. What is a Method Signature in Java?
+        What parts of a method make up its signature?
+        Does the return type belong to the method signature?
+
+7. What is the use of the this keyword in Java?
+        When do we use this in a class?
+        Give code examples for:
+        Referring to instance variables
+        Calling another constructor
+        Passing the current object
+
+8. What is the use of the super keyword in Java?
+        How do we use super to:
+        Call a superclass constructor?
+        Access a method or variable from the superclass?
+        Give a code example for each.
+
+9. What are the main Access Modifiers in Java? and briefly explain:
+
+10. Where can we use Access Modifiers in Java?
+        What access modifiers can be applied to:
+            Classes?
+            Methods?
+            Variables (fields)?
+
+11. What is the use of the final keyword in Java?
+        Variables?
+        Methods?
+        Classes?
+
+    Give code examples for each case.
+
+12. What is the difference between throw and throws in Java?
+        What is throw used for?
+        What is throws used for?
+        Give code examples for both.
+
+13. How many classes and interfaces can we extend or implement in Java?
+        How many classes can a Java class extend?
+        How many interfaces can a Java class implement?
+        Why is multiple inheritance not allowed with classes in Java?
+        Are there other languages that support multiple inheritance?
