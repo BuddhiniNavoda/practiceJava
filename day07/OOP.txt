@@ -9,7 +9,7 @@
     What are the main ideas behind OOP?
     there are 4 main concepts such as 
     Encapsulation : hiding details inside an object and show only necessary parts 
-    Inheritance: reuse code from one class in another class
+    Inheritance: Allows child class to get properties and behavior from parent class
     Polymorphism : one action behaving  differently based on the object. 
     Abstraction : showing only important features.
 
@@ -45,7 +45,7 @@
         System.out.println(child.getName());
 
     b. What is Inheritance in Java?
-    Allows one class to get properties and behavior from another class 
+    Allows child class to get properties and behavior from parent class 
 
     inheritance means allowed
         What is a superclass and a subclass?
@@ -256,7 +256,8 @@
 
 6. What is a Method Signature in Java?
         What parts of a method make up its signature?
-	method signature is the part of the method declaration that is used by the Java 	compiler to uniquely identify the method. It is crucial for method overloading, 	where multiple methods can have the same name but must differ in their 	signatures.
+	method signature is the part of the method declaration that is used by the Java compiler to uniquely
+     identify the method. It is crucial for method overloading, where multiple methods can have the same name but must differ in their 	signatures.
 
         Does the return type belong to the method signature?
 	No, the return type is NOT part of the method signature in Java.
@@ -288,7 +289,7 @@ private : only within a same class (keeping data and methods hidden from other c
 
 11. What is the use of the final keyword in Java?
         Variables? Makes a variable constant  (final int MAX_VALUE = 100;)
-
+-------------------------------------------------
         Methods? Prevents a method from being overridden in a subclass.
 	class Animal {
     final void sound() {
@@ -299,7 +300,7 @@ private : only within a same class (keeping data and methods hidden from other c
 class Dog extends Animal {
     // void sound() {} //  cannot override final method
 }
-
+---------------------------------------------------
         Classes?Prevents the class from being inherited (no subclassing allowed).
 
 final class Utility {
