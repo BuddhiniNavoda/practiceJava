@@ -74,7 +74,7 @@
 
     c. What is Polymorphism?
 
-    one thing id behaving in many ways . it allow to same methods name to do different things based on object or class.
+    one thing  behaving in many ways . it allow to same methods name to do different things based on object or class.
 
         What are the two types: compile-time and run-time?
         compile-time : method Overloading
@@ -118,26 +118,149 @@
 
 
     d. What is Abstraction?
+    Abstraction means showing only essential features and hiding the internal details.
         How do we achieve abstraction in Java?
+    using abstract classes and interfaces 
         Show a code example using abstract classes or interface.
+    
+    Abstract class(no body)
+    ----------------------------
+    abstractclass shape {
+        abstractvoid draw(); // abstract method (no body)
+    }
+    class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing a circle");
+    }
+    }
+    // Usage:
+    Shape s = new Circle();
+    s.draw();  // Output: Drawing a circle
+
+
+    Interface
+    -----------------------------
+     interface Animal {
+    void makeSound();
+    }
+
+    class Dog implements Animal {
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+    }
+
+    // Usage:
+    Animal a = new Dog();
+    a.makeSound();  // Output: Dog barks
+
 
 4. What is method Overriding and Overloading?
     a. What is Method Overloading in Java?
+    Method Overloading means having multiple methods
+    with the same name but different parameters in the same class.
+        
         When do we use it?
+        We use it when we want to perform similar operations in different ways based on input.
+
+
         Show a code example.
+
+                class Calculator {
+            int add(int a, int b) {
+                return a + b;
+            }
+
+            
+            int add(int a, int b, int c) {
+                return a + b + c;
+            }
+
+           
+            double add(double a, double b) {
+                return a + b;
+            }
+        }
+
+        class Main {
+            public static void main(String[] args) {
+                Calculator calc = new Calculator();
+                System.out.println(calc.add(2, 3));           // 5
+                System.out.println(calc.add(1, 2, 3));        // 6
+                System.out.println(calc.add(2.5, 3.5));       // 6.0
+            }
+        }
+
     b. What is Method Overriding in Java?
+    Method Overriding happens when a subclass provides its
+    own version of a method that is already defined in its superclass
+        
         When do we use it?
+        when we want a child class to change or extend the behavior of a method from its parent class.
+
+
         Show a code example.
+                    // Superclass
+            class Animal {
+                void makeSound() {
+                    System.out.println("Animal makes a sound");
+                }
+            }
+
+            // Subclass overrides the method
+            class Dog extends Animal {
+                @Override
+                void makeSound() {
+                    System.out.println("Dog barks");
+                }
+            }
+
+            class Main {
+                public static void main(String[] args) {
+                    Animal a = new Dog();  
+                    a.makeSound();         // Output: Dog barks (Run-time Polymorphism)
+                }
+            }
+
 
 5. What is the difference between an Interface and an Abstract Class in Java?
         What is an interface?
+        It only contains method declarations (no body) and constants.
+
+            interface Animal {
+        void makeSound();  // no method body
+         }
+
         What is an abstract class?
+        can't create objects of an abstract class.
+
         How are they different?
+        interface
+        -----------
+        no constructor
+        can have multiple inheritance(class can have many interfaces)
+        no method body(only method name)
+
+
+        Abstract class
+        --------------
+        have constructor
+        a class can extend only 1 abstract class
+        can have some method body
+
         When should we use each?
+
+        Abstract class -
+        ------------------
+        
 
 6. What is a Method Signature in Java?
         What parts of a method make up its signature?
+	method signature is the part of the method declaration that is used by the Java 	compiler to uniquely identify the method. It is crucial for method overloading, 	where multiple methods can have the same name but must differ in their 	signatures.
+
         Does the return type belong to the method signature?
+	No, the return type is NOT part of the method signature in Java.
+	cannot overload methods by changing only the return type.
 
 7. What is the use of the this keyword in Java?
         When do we use this in a class?
@@ -153,27 +276,125 @@
         Give a code example for each.
 
 9. What are the main Access Modifiers in Java? and briefly explain:
+public : when you want the method , class or variable to be accessible from anywhere
+protected : usefull when you want controlled access in inheritance(within the same package, subclasses in other packages)
+private : only within a same class (keeping data and methods hidden from other classes)
 
 10. Where can we use Access Modifiers in Java?
         What access modifiers can be applied to:
-            Classes?
-            Methods?
-            Variables (fields)?
+            Classes? ; public 
+            Methods? public, private , protected
+            Variables (fields)? public, private , protected
 
 11. What is the use of the final keyword in Java?
-        Variables?
-        Methods?
-        Classes?
+        Variables? Makes a variable constant  (final int MAX_VALUE = 100;)
+
+        Methods? Prevents a method from being overridden in a subclass.
+	class Animal {
+    final void sound() {
+        System.out.println("Some sound");
+    }
+}
+
+class Dog extends Animal {
+    // void sound() {} //  cannot override final method
+}
+
+        Classes?Prevents the class from being inherited (no subclassing allowed).
+
+final class Utility {
+    public static void help() {
+        System.out.println("Helping...");
+    }
+}
+
+// class MyUtility extends Utility {} // cannot inherit from final class
 
     Give code examples for each case.
 
+
 12. What is the difference between throw and throws in Java?
+Both throw and throws are used in Java exception handling, but they serve different purposes. 
+
         What is throw used for?
+Manually throw an exception (either checked or unchecked).
+Syntax: throw new ExceptionType("message");
+Used inside: Method body or block of code.
+
+public class TestThrow {
+    public static void checkAge(int age) {
+        if (age < 18) {
+            throw new IllegalArgumentException("Age must be 18 or older.");
+        }
+        System.out.println("Eligible to vote.");
+    }
+
+    public static void main(String[] args) {
+        checkAge(16);  // This will throw an exception
+    }
+}
+
+
         What is throws used for?
+Declares that a method might throw a checked exception.
+Syntax: returnType methodName() throws ExceptionType
+Used in: Method declaration, for checked exceptions (like IOException,)
+
+import java.io.*;
+
+public class TestThrows {
+    public static void readFile(String fileName) throws IOException {
+        FileReader fr = new FileReader(fileName);  // May throw IOException
+        fr.read();
+        fr.close();
+    }
+
+    public static void main(String[] args) {
+        try {
+            readFile("test.txt");
+        } catch (IOException e) {
+            System.out.println("File error: " + e.getMessage());
+        }
+    }
+}
+
+
         Give code examples for both.
 
 13. How many classes and interfaces can we extend or implement in Java?
-        How many classes can a Java class extend?
-        How many interfaces can a Java class implement?
+        How many classes can a Java class extend? only one
+ 
+	class A {}
+class B extends A {} //  Valid
+// class C extends A, B {} //  Invalid — Compile-time error
+
+        How many interfaces can a Java class implement? 
+multiple interface implementation.
+
+interface Flyable {
+    void fly();
+}
+interface Swimmable {
+    void swim();
+}
+class Bird implements Flyable, Swimmable {
+    public void fly() { System.out.println("Flying"); }
+    public void swim() { System.out.println("Swimming"); }
+}
+
         Why is multiple inheritance not allowed with classes in Java?
-        Are there other languages that support multiple inheritance?
+A class could inherit the same method from multiple parent classes, leading to ambiguity.
+
+class A {
+    void greet() { System.out.println("Hello from A"); }
+}
+class B extends A {
+    void greet() { System.out.println("Hello from B"); }
+}
+class C extends A {
+    void greet() { System.out.println("Hello from C"); }
+}
+// class D extends B, C {} //  Ambiguity: Which greet() to call?
+
+
+        Are there other languages that support multiple inheritance? yes. c++,python
