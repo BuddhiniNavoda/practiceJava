@@ -1,13 +1,13 @@
 1. What is OOP? 
     What does OOP stand for?  
-    Object Oriented Programming that way of writting programm by creating object that represent real world thing 
+    Object Oriented Programming that way of writting programm by creating object that represent real world thing. real world object to programming langugez. 
 
     Why do we use Object-Oriented Programming?
     it helps to reduce complexity of code and help to understand code easier  and maintained.
     helips to reusing code
 
     What are the main ideas behind OOP?
-    there are 4 main concepts such as 
+    there are 4 main concepts  
     Encapsulation : hiding details inside an object and show only necessary parts 
     Inheritance: Allows child class to get properties and behavior from parent class
     Polymorphism : one action behaving  differently based on the object. 
@@ -19,7 +19,7 @@
 
 3. What is Encapsulation, Inheritance, Polymorphism, and Abstraction?
     a. What is Encapsulation in Java?
-        hiding the internal details of the class and only allowing access throught the public method.
+        hiding the internal details(properties, attributes) of the class and only allowing access throught the public method for data
 
         Why is it useful?
         keeps data safe with unwanted changes.
@@ -74,7 +74,7 @@
 
     c. What is Polymorphism?
 
-    one thing  behaving in many ways . it allow to same methods name to do different things based on object or class.
+    one thing  behaving in many ways . it allow to same methods name to do different things based on object or class. do one thing in multiple way
 
         What are the two types: compile-time and run-time?
         compile-time : method Overloading
@@ -224,15 +224,17 @@
 
 
 5. What is the difference between an Interface and an Abstract Class in Java?
+
         What is an interface?
-        It only contains method declarations (no body) and constants.
+------------------------------------------------------------------------
+        It only contains (abstract method)method declarations (no body) and constants.
 
             interface Animal {
         void makeSound();  // no method body
          }
-
+-------------------------------------------------------------
         What is an abstract class?
-        can't create objects of an abstract class.
+        can't create objects of an abstract class.(can have any implement methods, should have abstract method(aniwaren))
 
         How are they different?
         interface
