@@ -1,0 +1,170 @@
+General Java Collection Framework Questions
+
+1. What are generics in Java?
+    Generics in Java are a feature that allows you to write code that works with different data types while providing type safety at compile time.
+
+2. What are the advantages of the Collection Framework?
+    Reduces programming effort:
+    Increases program speed and quality:
+    Allows interoperability among unrelated APIs: 
+    Reduces effort to learn and to use new APIs
+    Reduces effort to design new APIs
+    Fosters software reuse: 
+
+3. What does traversing a collection mean? Can you give an example?
+    Traversing a collection means accessing each element of the 
+    collection one by one, usually to read, modify, or perform operations on them.
+
+
+Using a for-each loop with an ArrayList
+--------------------------------------------
+        import java.util.ArrayList;
+
+        public class Main {
+            public static void main(String[] args) {
+                ArrayList<String> names = new ArrayList<>();
+                names.add("Alice");
+                names.add("Bob");
+                names.add("Charlie");
+
+                // Traversing the collection
+                for (String name : names) {
+                    System.out.println(name);
+                }
+            }
+        }
+
+
+4. What are the major ways of organizing data in the Collection Framework?
+    -------------------
+    Using Iterators
+        Iterator, an object whose job is to walk over the elements of a 
+        collection.
+        • The iterator has two commands: 
+        hasNext(), which returns whether there are any more elements to 
+        visit, and 
+        next(), which returns the next element and moves the iterator to 
+        the next position
+
+    --------------------------
+    with the for - each construct
+        • Suppose collection is an instance of a Collection. Then 
+        for (Object o : collection) 
+        System.out.println(o); 
+        prints each element of the collection on a separate line. 
+    
+5. What are the similarities and differences between Sets and Lists?
+
+    similarities: part of java collection
+                   can store multiple elements
+                   can be iterated using loops or iterators.
+
+    differences : 
+    --------------
+    list(ArrayList / LinkedList) :  allow duplicate elements
+             maintain the order of insertion
+             allow access by index
+            Use a List when you need order and allow duplicates
+    -------------------
+    Set (HashSet / Treeset /LinkedHashSet) : Dont allow duplicate
+                                             dont support index - based 
+                                             dont support index - based access (unless LinkedHashSet)
+                                            Order depends on the type:(HashSet : Order not guaranted / LinkedHashSet- keeps insertion order/ Treeset - keeps shorted order)
+6. What are the similarities and differences between Sets and Maps?
+
+    similarities:
+    ---------------------
+    part of java collection 
+    used to store data
+    dont allow duplicate keys/elements
+    can be iterated using loops or iterators
+ 
+    differences
+    ------------------------
+    set : stores only values(eg: list of unique items)
+          unique elements
+          (HashSet/ Treeset /LinkedHashSet)
+    
+    map : stores key - value pairs
+          each key must be unique, but value can be duplicate
+          (hashMap / Treemap / LinkedHashMap)
+
+7. What are the similarities and differences between Maps and Lists?
+
+    similarities :
+    ----------------------
+    part of java collection Framework
+    used to store and manage multiple elements
+    can be iterated using loops or iterators
+    can use generics to define data types.
+
+    differences :
+    -----------------------
+    list : store individual elements 
+           elements are accessed by index
+           allow duplicate value
+           (ArrayList / LinkedList)
+           keeps track of the exact order in which elements were added.
+
+    map : Store key - value pairs
+          elements are accessed by key 
+          dont allow duplicate keys 
+          (hashMap , Treemap , LinkedHashMap)
+            Order depends on the type: (HashMap:  order not guaranted / LinkedHashMap : Keeps insertion order / Treemap : keeps key in sorted order )
+
+8. You are storing a list of student names for a classroom attendance sheet, and the order in which they signed in matters. Which data structure would you use, and why?
+
+    List (ArrayList)
+
+    list maintain the order in which elements are added , so keeps track of who signed in first, second 
+    2 student can have the same name , so should be  allow duplicate elemnts
+    accesseach student's name using their positions(index ) in the list.
+    
+     
+9. You need to keep track of unique email addresses that have signed up for a newsletter, and duplicates should be automatically ignored. Which data structure is most suitable?
+
+    set (HashSet)
+
+    automatically ignores duplicate, so email addres cant added same address more than once
+    offers fast performance for checking and adding emails.                                                         n
+
+10.You are building a dictionary application where you need to store a word along with its meaning. Which data structure would best suit this use case, and why?
+
+    map :
+
+    store key-value pairs,( word - key / meaning - value)
+    easily look up the meaning of a word using the word as the key. 
+
+11. You're developing a quiz application and want to maintain the order of submitted answers for each user. Which data structure would be most appropriate?
+    
+    list(ArrayList) : 
+
+    maintain the order in which elements are addedd (important to track the sequence of answer submitted by a user)
+    acces answers by their position(index) to match them with the corresponding queastion
+    allow duplicateanswers 
+
+12. You are implementing a feature that counts how many times each word appears in a document. Which data structure would help you efficiently store this data, and why?
+
+    HashSet: 
+        Key-value pairing: store each word - key / its count - value.
+        A HashMap provides fast access, so it's efficient to update the count as you process each word.
+    
+
+13. In a social media app, you want to store the usernames of people who liked a post, but avoid listing the same user twice. Which data structure should be used?
+
+    HashSet :
+     A Set stores unique elements only, so it automatically prevents duplicate usernames
+    if the same user likes the post multiple times, their username appears only once.
+    A HashSet provides fast performance for adding and checking users.
+
+
+14. You need to display a list of items in the order they were added to a shopping cart, even if some items appear more than once. What is the best choice of data structure here?
+
+    ArrayList :
+    A List maintains insertion order, so items will be displayed in the exact order they were added.
+     List allows duplicates, so if a user adds the same item multiple times, each addition is recorded.
+
+15. You are building a contact book where each contact has a unique phone number, and you want to retrieve contact details using that number. Which data structure would you choose?
+    HashMap :
+     A map store key - value pairs , key - unique phone number 
+                        value - contact details 
