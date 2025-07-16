@@ -1,11 +1,104 @@
 1. What is the collection framwork, why need collections.
+
+    The Collection Framework in Java is a set of classes and interfaces
+    that help you store, retrieve, and manage groups of data
+    (like lists of names, sets of numbers, etc.) easily and efficiently.
+
+    Imagine you have 1000 student names to store. You can’t create 1000 variables.
+     That’s where collections help:
+
+            They let you store multiple values in a single object.
+
+            You can add, remove, sort, search data easily.
+
+            They provide ready-made methods to avoid writing complex code.
+
+
 2. What are the main ways to iterate through a collection? Provide an example for each method.
+
+    using "for each " loop
+    -------------------------
+    import java.util.ArrayList;
+
+        public class Main {
+            public static void main(String[] args) {
+                ArrayList<String> names = new ArrayList<>();
+                names.add("Alice");
+                names.add("Bob");
+                names.add("Charlie");
+
+                for (String name : names) {
+                    System.out.println(name);
+                }
+            }
+        }
+
+    using iterator
+    ------------------------------
+    import java.util.ArrayList;
+    import java.util.Iterator;
+
+    public class Main {
+        public static void main(String[] args) {
+            ArrayList<String> names = new ArrayList<>();
+            names.add("Alice");
+            names.add("Bob");
+            names.add("Charlie");
+
+            Iterator<String> it = names.iterator();
+            while (it.hasNext()) {
+                String name = it.next();
+                System.out.println(name);
+            }
+        }
+    }
+
+    using Traditionla for loop
+    -------------------------------
+    import java.util.ArrayList;
+        public class Main {
+            public static void main(String[] args) {
+                ArrayList<String> names = new ArrayList<>();
+                names.add("Alice");
+                names.add("Bob");
+                names.add("Charlie");
+
+                for (int i = 0; i < names.size(); i++) {
+                    System.out.println(names.get(i));
+                }
+            }
+        }
+
+    using forEach() method with lamdha
+    ------------------------------------
+    import java.util.ArrayList;
+    public class Main {
+        public static void main(String[] args) {
+            ArrayList<String> names = new ArrayList<>();
+            names.add("Alice");
+            names.add("Bob");
+            names.add("Charlie");
+
+            names.forEach(name -> System.out.println(name));
+        }
+    }
+
+
+
+
 3. What is the issue with the following loop when used with a non-empty collection?
     while (collection.iterator().hasNext()) {
         // No call to next()
     }
+
+if you call .Iterator agian and again inside a loop
+ you are always staring from the begging of the collection
+
+
 4. Draw or describe the hierarchy of the Java Collection Framework.
+
 5. What are the basic set operations supported in Java?
+
 6. What is the difference between HashSet and TreeSet?
 7. What is hashing? Provide a small example to demonstrate how it works.
 8. How does a HashSet store its elements internally?
