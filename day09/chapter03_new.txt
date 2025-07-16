@@ -1,0 +1,42 @@
+1. What is the collection framwork, why need collections.
+2. What are the main ways to iterate through a collection? Provide an example for each method.
+3. What is the issue with the following loop when used with a non-empty collection?
+    while (collection.iterator().hasNext()) {
+        // No call to next()
+    }
+4. Draw or describe the hierarchy of the Java Collection Framework.
+5. What are the basic set operations supported in Java?
+6. What is the difference between HashSet and TreeSet?
+7. What is hashing? Provide a small example to demonstrate how it works.
+8. How does a HashSet store its elements internally?
+9. How efficient is HashSet in the following operations? Use Big O notation:
+    Removing an element
+    Searching for an element
+10. What are hash collisions, and how are they handled?
+11. What does the capacity of a HashSet mean?
+12. What is the meaning of load factor in a HashSet?
+13. How do you create a HashSet? Provide examples for the following:
+    A HashSet of integers
+    A HashSet of strings
+    A HashSet of a custom class called Student
+14. What are the differences between TreeSet and HashSet?
+15. Which is faster: HashSet or TreeSet? In what situations?
+16. If a TreeSet contains n elements, what is the average time complexity for inserting an element?
+17. How do you implement the Comparable interface in Java?
+        What is the abstract method it includes?
+        What are the return and input types of that method?
+18. How do you use a TreeSet with elements that implement the Comparable interface?
+19. How do you create the following TreeSet instances:
+    A TreeSet of integers
+    A TreeSet of strings
+    A TreeSet of Student objects, ordered by student name
+20. Given a list of student names and their scores, how would you:
+18. Store the data in a suitable collection
+19. Display the list in descending order of scores
+20. Which collection type would be most appropriate for this?
+21. You need to store a large number of unique product IDs and perform fast insertions and lookups. You do not require any sorting. Which Set implementation would you choose?
+22. You are building a student record system where the student names must be stored in sorted order (alphabetically) without duplicates. Which Set type should you use?
+23. A game application needs to keep track of items collected by the player. The order doesn’t matter, but duplicates are not allowed. What is the most efficient Set type?
+24. You want to maintain a list of cities for a travel recommendation feature, where cities should be displayed in alphabetical order. Which Set would best serve this need?
+25. In a voting system, you want to store the unique names of voters as they register. The priority is speed for checking if someone has already registered. Which Set type is appropriate?
+26. You’re creating a leaderboard where player names need to be shown in alphabetical order, and no duplicates are allowed. Which Set implementation should be used?
