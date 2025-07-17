@@ -99,9 +99,84 @@ if you call .Iterator agian and again inside a loop
 
 5. What are the basic set operations supported in Java?
 
+| Operation    | Method          | Description                                |
+| ------------ | --------------- | ------------------------------------------ |
+| Union        | `addAll()`      | Combines all elements                      |
+| Intersection | `retainAll()`   | Keeps only common elements                 |
+| Difference   | `removeAll()`   | Removes common elements from the first set |
+| Subset check | `containsAll()` | Checks if one set is a subset of another   |
+
+
 6. What is the difference between HashSet and TreeSet?
+
+| Feature                       | **HashSet**                                           | **TreeSet**                                                           |
+| ----------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------- |
+| **Ordering**                  | No order (elements are unordered)                     | Sorted in **natural order** (or by custom `Comparator`)               |
+| **Performance**               | Faster (constant time `O(1)` for add, remove, search) | Slower (logarithmic time `O(log n)` due to internal tree structure)   |
+| **Underlying Data Structure** | Uses a **Hash Table**                                 | Uses a **Red-Black Tree** (self-balancing BST)                        |
+| **Allows null?**              | Allows **one null element**                           | **Does NOT** allow null (throws `NullPointerException` if you add it) |
+| **Use Case**                  | When you **just need uniqueness**, no sorting         | When you **need elements sorted** automatically                       |
+                                  Best when you just need to check for                    
+                                   uniqueness quickly.
+                                                                                          Best when you need a sorted set.
+
+
+
 7. What is hashing? Provide a small example to demonstrate how it works.
+   
+    Hashing is a technique used to convert data (like a string or number) into a fixed-size 
+    value called a hash code using a hash function.
+    to quickly locate or store elements.
+
+    ----------------------------------
+    import java.util.HashMap;
+    public class Main {
+        public static void main(String[] args) {
+            HashMap<String, Integer> map = new HashMap<>();
+
+            // Storing data (Key is hashed internally)
+            map.put("Alice", 90);
+            map.put("Bob", 85);
+
+            // Retrieving data
+            System.out.println("Alice's score: " + map.get("Alice"));
+        }
+    }
+
+    "Alice" is converted to a hash code using its hashCode() method.
+
+    The hash code determines the index (bucket) where the value 90 is stored.
+
+    When map.get("Alice") is called, it recalculates the hash and finds the value quickly.
+
+    --------------------
+
+
 8. How does a HashSet store its elements internally?
+
+    A HashSet uses a HashMap internally to store its elements.
+    -------------------------------------------------------------
+    When you add an element to a HashSet,
+    it calls the hashCode() method of the object to calculate a hash.
+
+    The hash determines the "bucket" 
+    (location in memory) where the element should go.
+
+    It then uses equals() to check if any existing element
+    in that bucket is equal to the new one (to avoid duplicates).
+
+    Internally, each element is stored as a key in a HashMap, 
+    and the value is a constant placeholder (PRESENT).
+
+    | Step               | Description                                                     |
+| ------------------ | --------------------------------------------------------------- |
+| 1. Hashing         | Calls `hashCode()` to compute hash                              |
+| 2. Bucketing       | Determines where to place the element                           |
+| 3. Duplicate check | Uses `equals()` to avoid storing duplicates                     |
+| 4. Storage         | Stores element as **key** in a `HashMap`, value is dummy object |
+
+
+
 9. How efficient is HashSet in the following operations? Use Big O notation:
     Removing an element
     Searching for an element
@@ -133,3 +208,4 @@ if you call .Iterator agian and again inside a loop
 24. You want to maintain a list of cities for a travel recommendation feature, where cities should be displayed in alphabetical order. Which Set would best serve this need?
 25. In a voting system, you want to store the unique names of voters as they register. The priority is speed for checking if someone has already registered. Which Set type is appropriate?
 26. You’re creating a leaderboard where player names need to be shown in alphabetical order, and no duplicates are allowed. Which Set implementation should be used?
+
