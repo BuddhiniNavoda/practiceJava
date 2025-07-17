@@ -180,7 +180,32 @@ if you call .Iterator agian and again inside a loop
 9. How efficient is HashSet in the following operations? Use Big O notation:
     Removing an element
     Searching for an element
+
+    | Operation           | Average Case | Worst Case |
+| ------------------- | ------------ | ---------- |
+| `remove(element)`   | O(1)         | O(n)       |
+| `contains(element)` | O(1)         | O(n)       |
+
+
 10. What are hash collisions, and how are they handled?
+
+A hash collision happens when two different objects produce the same hash code.
+
+In Java, objects are placed into bucketsbased on their hash code.
+ If two objects generate the same hash, they end up in the same bucket, causing a collision.
+
+Java handles hash collisions using chaining.
+ When two elements have the same hash code, 
+ they are placed in the same bucket as a list. 
+ Java then uses the equals() method to check if the elements are equal.
+  If there are many collisions, Java converts the list to a tree to keep performance fast.
+
+  If both elements are the same (same hashCode() and equals() returns true),
+   Java does not store duplicates in a HashSet. It checks using equals() and skips adding the duplicate element.
+   if both elements are not same, both are stored separately in the same bucket.
+
+
+
 11. What does the capacity of a HashSet mean?
 12. What is the meaning of load factor in a HashSet?
 13. How do you create a HashSet? Provide examples for the following:
