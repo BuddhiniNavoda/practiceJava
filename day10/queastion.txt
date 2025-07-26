@@ -192,12 +192,13 @@ The programe is stuck and cant make progress even through the sysytem is running
 deadlock : 2 or more blocks are blaocked forever and  waiting for each other 
 livelock : Threads are no block but keep responding  for each other 's  actions
 starvation ;   A thread wait for long time because other always get priority.(thread anable to gain access to shared data for a long time.)
+----------------------------------------------------------------------------
 
-[7/25/2025 10:09 PM] Achintha Ayya 💗🦄: 22. The following Java program increments a shared counter from multiple threads, but the result is inconsistent. Identify the race condition and fix the problem.
+ 22. The following Java program increments a shared counter from multiple threads, but the result is inconsistent. Identify the race condition and fix the problem.
 
 class Counter {
     public int count = 0;
-    public void increment() {
+    public  synchronized void increment() {
         count++;
     }
 }
@@ -218,7 +219,8 @@ public class Main {
         System.out.println("Final count: " + counter.count);
     }
 }
-[7/25/2025 10:11 PM] Achintha Ayya 💗🦄: // Problem: Simultaneous transfers between accounts may lead
+----------------------------------------------------------------------------------------------------
+ // Problem: Simultaneous transfers between accounts may lead
 // to incorrect balances due to race conditions.
 
 class BankAccount {
@@ -236,13 +238,13 @@ class BankAccount {
         balance += amount;
     }
 
-    public int getBalance() {
+    public synchronized int getBalance() {
         return balance;
     }
 }
 
 public class Main {
-    public static void transfer(BankAccount from, BankAccount to, int amount) {
+    public static synchronized void transfer(BankAccount from, BankAccount to, int amount) {
         if (from.getBalance() >= amount) {
             from.withdraw(amount);
             to.deposit(amount);
@@ -268,13 +270,15 @@ public class Main {
 
 // Task: Fix the race condition in the transfer method
 // to ensure thread-safe transactions.
-[7/25/2025 10:13 PM] Achintha Ayya 💗🦄: // Problem: Two threads are trying to sell items from the same inventory.
+
+=====================================================================================================
+ // Problem: Two threads are trying to sell items from the same inventory.
 // Sometimes the stock becomes negative due to race conditions.
 
 class Inventory {
     private int stock = 5;
 
-    public void sell() {
+    public synchronized void sell() {
         if (stock > 0) {
             System.out.println(Thread.currentThread().getName() + " sold 1 item");
             stock--;
@@ -283,7 +287,7 @@ class Inventory {
         }
     }
 
-    public int getStock() {
+    public synchronized int getStock() {
         return stock;
     }
 }
@@ -306,8 +310,12 @@ public class Main {
     }
 }
 
+
 // Task: Prevent stock from becoming negative using thread-safe techniques.
-[7/25/2025 10:14 PM] Achintha Ayya 💗🦄: // Problem: Multiple threads write to a shared list.
+
+================================================================================================
+
+ // Problem: Multiple threads write to a shared list.
 // Sometimes, items are missed or the list becomes corrupted.
 
 import java.util.ArrayList;
@@ -346,7 +354,9 @@ public class SharedList {
 }
 
 // Task: Fix the race condition to ensure the list is written correctly and no data is lost.
-[7/25/2025 10:15 PM] Achintha Ayya 💗🦄: // Problem: A session ID generator returns duplicate IDs
+
+============================================================================================================
+ // Problem: A session ID generator returns duplicate IDs
 // when accessed from multiple threads.
 
 class SessionIdGenerator {
