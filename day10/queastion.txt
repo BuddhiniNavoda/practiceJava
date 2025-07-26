@@ -1,0 +1,380 @@
+1. What is multithreading?  
+
+program runs multiple threads at a same time 
+
+2. Why do we need multithreading? 
+
+better cpu utilization
+responsiveness
+faireness
+resource shareing
+
+3. Give a few examples where multithreading is used.  
+
+media player - use separate threads for audio, video, recording
+web server : to handle multiple client request Simultaneously
+web browser : loading pages, running scripts 
+download manager : down;load different parts of file cuncurrently 
+
+
+4. Why is multithreading difficult? 
+Race condition : when 2 ro more threads are access and modify data simultaneously
+Data inconsistent : reading and writting data without proper syynchronization
+debugging difficulty : timing issue make errors hard to reproduce and debug
+
+
+5. How does the Java threading model work? 
+creat a initial java thread which main method of the class pass to the JVM
+
+6. What are the two main methods of creating threads in Java? Give examples. 
+
+1) subclass the thread class and overrride the run () method
+
+ public class Mythread extends Thread {
+    public void run (){
+        System.out.println("Mythreading running")
+    }
+ }
+
+ Mythread mythread = new Mythread ();
+ mythread.start();
+
+
+
+2) implemnet Runnable interface and pass  object to threaded
+
+public class MyRunnable implemnet Runnable{
+    public void run() {
+        System.out.println("MyRunnable is running")
+    }
+}
+
+MyRunnable myRunnable = new MyRunnable ();
+Thread t = new Thread ();
+t.start();
+
+
+7. How do you start a thread in Java?  
+ 
+ calling Thread.start()
+
+8. What are the methods of implementing the Runnable interface? (3 methods)
+
+    A) class implemment Runnable
+
+    public class MyRunnable implemment Runnable{
+        public void run(){
+            System.out.println("MyRunnable is running")
+        }
+    }
+
+    MyRunnable myRunnable = new MyRunnable();
+    Thread t = new Thread();
+    t.start();
+
+
+    B) Anonymous Runnable
+    Runnable myRunnable = new Runnable(){
+        public void run(){
+            System.out.println("MyRunnable is running")
+        }
+    }
+
+    Thread t = new Thread(myRunnable);
+    t. start();
+
+    C) lamdha Runnable
+     
+     Runnable runnable = () -> {
+        System.out.println ("runnable is running")
+     }
+
+    Thread t = new Thread();
+    t.start();
+
+
+
+9. Which is better to use: Runnable or extending the Thread class? 
+Runnable is preffered when we need thread pool or queue up runnable tasks easilt until a woeker is available
+
+10. What does it mean to terminate a thread? 
+
+terminate a thread is stop the execution of therad. finish the therad and it should release all the resource and cleanup its work.
+
+11. How do you manually terminate a thread?  
+
+use thread.interrupt() method
+
+12. What happens when a thread is terminated while it is in sleep mode? 
+
+Java throws an InterruptedException 
+
+pub;ic void run (){
+    try {
+        for (int i =0 ; i<REPETITION ; i++){
+            thread.sleep(1000)
+        }
+    }
+
+    catch (InterruptedException){
+
+    }
+}
+
+
+
+13. What does thread.join() do? Give an example.
+
+wait for a thread to terminate
+
+14. Someone said if you don’t use thread.join() carefully, it behaves like a normal single-threaded program. Why?  
+15. What are the main states of a thread? Describe the relationship between them. 
+
+new : in this state thread object is created 
+        Thread t = new Thread();
+
+Runnable : in this state thread is call start() method and ready to run its depend on cpu scheduler
+
+Running : when thread scheduler select the thread , it move running state ,in this state therad run() method execute.
+
+
+wait()/ sleep() / Suspend() : from running state to waiting/ sleeping/blocking - call wait (), sleep(),suspend();
+
+                              from waiting/sleeping/blocking to Runnable - after waiting,sleepnig and bloacking state notify all the thread by using Notify(), NotifyAll()
+
+Terminate : after complete executionof therad, thread goes to terminate state. 
+
+16. What are the main challenges in using threads? 
+
+Resource shareing problem
+deadlock
+syynchronization issue 
+Thread Cycle management
+
+
+17. What is a race condition?  
+
+one or more therads share same resource at same time.
+
+18. How do you avoid race conditions? (Explain the locking mechanism) 
+
+Apply the lock before accessing the shared resourec
+access and modify the shared resource
+release the lock after the operation is complete
+
+Class Counter {
+    private int count =0;
+
+    public synchronized void increment(){
+        count++;
+    }
+
+    public int getCount (){
+        return count ;
+    }
+}
+
+"synchronized" is allow to only one thread to execute increment() at a time.
+
+
+19. What are the challenges of concurrency control:  
+    i) when there is poor control  : threads are acess and share data at a same time without pritection 
+resulte can be incorrect and unpredictable
+
+    ii) when there is over-control  : threads are blocked too much and too long because of too much or poorly managed locks.
+    As a result program can be slow and stuck
+
+20. What is the meaning of liveness failure?  
+The programe is stuck and cant make progress even through the sysytem is running
+
+21. Explain the differences between deadlock, livelock, and starvation.
+
+deadlock : 2 or more blocks are blaocked forever and  waiting for each other 
+livelock : Threads are no block but keep responding  for each other 's  actions
+starvation ;   A thread wait for long time because other always get priority.(thread anable to gain access to shared data for a long time.)
+
+[7/25/2025 10:09 PM] Achintha Ayya 💗🦄: 22. The following Java program increments a shared counter from multiple threads, but the result is inconsistent. Identify the race condition and fix the problem.
+
+class Counter {
+    public int count = 0;
+    public void increment() {
+        count++;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Counter counter = new Counter();
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) counter.increment();
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) counter.increment();
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println("Final count: " + counter.count);
+    }
+}
+[7/25/2025 10:11 PM] Achintha Ayya 💗🦄: // Problem: Simultaneous transfers between accounts may lead
+// to incorrect balances due to race conditions.
+
+class BankAccount {
+    private int balance;
+
+    public BankAccount(int balance) {
+        this.balance = balance;
+    }
+
+    public void withdraw(int amount) {
+        balance -= amount;
+    }
+
+    public void deposit(int amount) {
+        balance += amount;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+}
+
+public class Main {
+    public static void transfer(BankAccount from, BankAccount to, int amount) {
+        if (from.getBalance() >= amount) {
+            from.withdraw(amount);
+            to.deposit(amount);
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        BankAccount a = new BankAccount(1000);
+        BankAccount b = new BankAccount(1000);
+
+        Thread t1 = new Thread(() -> transfer(a, b, 100));
+        Thread t2 = new Thread(() -> transfer(b, a, 200));
+
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+
+        System.out.println("Account A: " + a.getBalance());
+        System.out.println("Account B: " + b.getBalance());
+    }
+}
+
+// Task: Fix the race condition in the transfer method
+// to ensure thread-safe transactions.
+[7/25/2025 10:13 PM] Achintha Ayya 💗🦄: // Problem: Two threads are trying to sell items from the same inventory.
+// Sometimes the stock becomes negative due to race conditions.
+
+class Inventory {
+    private int stock = 5;
+
+    public void sell() {
+        if (stock > 0) {
+            System.out.println(Thread.currentThread().getName() + " sold 1 item");
+            stock--;
+        } else {
+            System.out.println(Thread.currentThread().getName() + " tried to sell, but out of stock");
+        }
+    }
+
+    public int getStock() {
+        return stock;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Inventory inventory = new Inventory();
+
+        Runnable task = () -> {
+            for (int i = 0; i < 3; i++) {
+                inventory.sell();
+            }
+        };
+
+        Thread t1 = new Thread(task, "Seller-1");
+        Thread t2 = new Thread(task, "Seller-2");
+
+        t1.start();
+        t2.start();
+    }
+}
+
+// Task: Prevent stock from becoming negative using thread-safe techniques.
+[7/25/2025 10:14 PM] Achintha Ayya 💗🦄: // Problem: Multiple threads write to a shared list.
+// Sometimes, items are missed or the list becomes corrupted.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SharedList {
+    private List<Integer> list = new ArrayList<>();
+
+    public void addItem(int value) {
+        list.add(value);
+    }
+
+    public List<Integer> getList() {
+        return list;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        SharedList shared = new SharedList();
+
+        Runnable writer = () -> {
+            for (int i = 0; i < 1000; i++) {
+                shared.addItem(i);
+            }
+        };
+
+        Thread t1 = new Thread(writer);
+        Thread t2 = new Thread(writer);
+
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+
+        System.out.println("List size: " + shared.getList().size());
+    }
+}
+
+// Task: Fix the race condition to ensure the list is written correctly and no data is lost.
+[7/25/2025 10:15 PM] Achintha Ayya 💗🦄: // Problem: A session ID generator returns duplicate IDs
+// when accessed from multiple threads.
+
+class SessionIdGenerator {
+    private int sessionId = 0;
+
+    public int getNextId() {
+        return sessionId++;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        SessionIdGenerator generator = new SessionIdGenerator();
+
+        Runnable task = () -> {
+            for (int i = 0; i < 5; i++) {
+                System.out.println(Thread.currentThread().getName() + " got ID: " + generator.getNextId());
+            }
+        };
+
+        Thread t1 = new Thread(task, "User-A");
+        Thread t2 = new Thread(task, "User-B");
+
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+    }
+}
+
+// Task: Ensure each thread receives a unique ID using thread-safe updates.

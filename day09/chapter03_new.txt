@@ -207,30 +207,161 @@ Java handles hash collisions using chaining.
 
 
 11. What does the capacity of a HashSet mean?
+
+Capacity is the size of the internal table (buckets) used to store elements in a HashSet.
+
+
 12. What is the meaning of load factor in a HashSet?
+    The load factor in a HashSet is a measure that controls
+     when to increase the capacity (resize) of the internal storage.
+
+It is a fraction (default is 0.75) that defines how full the HashSet can be before it grows in size.
+
 13. How do you create a HashSet? Provide examples for the following:
     A HashSet of integers
+--------------------------------
+        import java.util.HashSet;
+        public class Main {
+            public static void main(String[] args) {
+                HashSet<Integer> numbers = new HashSet<>();
+                numbers.add(10);
+                numbers.add(20);
+                numbers.add(30);
+
+                System.out.println(numbers);  // Output: [10, 20, 30] (order may vary)
+            }
+        }
+---------------------------------
     A HashSet of strings
+
+        import java.util.HashSet;
+        public class Main {
+            public static void main(String[] args) {
+                HashSet<String> names = new HashSet<>();
+                names.add("Alice");
+                names.add("Bob");
+                names.add("Charlie");
+
+                System.out.println(names);  // Output: [Alice, Bob, Charlie] (order may vary)
+            }
+        }
+
+----------------------------------
     A HashSet of a custom class called Student
-14. What are the differences between TreeSet and HashSet?
-15. Which is faster: HashSet or TreeSet? In what situations?
-16. If a TreeSet contains n elements, what is the average time complexity for inserting an element?
-17. How do you implement the Comparable interface in Java?
+
+    When using custom objects in a HashSet, Java must be able to compare them and detect duplicates. For this, we must override:
+
+    hashCode() → for generating a bucket index.
+
+    equals() → to check if two objects are logically equal.
+
+        public class Student {
+            int id;
+            String name;
+
+            // Constructor
+            Student(int id, String name) {
+                this.id = id;
+                this.name = name;
+            }
+
+            // Override hashCode
+            @Override
+            public int hashCode() {
+                return id;  // Simple hash using 'id' field
+            }
+
+            // Override equals to compare two students logically
+            @Override
+            public boolean equals(Object obj) {
+                if (this == obj) return true;  // same object
+                if (!(obj instanceof Student)) return false;
+
+                Student s = (Student) obj;
+                return this.id == s.id && this.name.equals(s.name);
+            }
+
+            // Optional: for readable output
+            @Override
+            public String toString() {
+                return id + " - " + name;
+            }
+        }
+
+        import java.util.HashSet;
+
+        public class Main {
+            public static void main(String[] args) {
+                HashSet<Student> students = new HashSet<>();
+
+                students.add(new Student(1, "Alice"));
+                students.add(new Student(2, "Bob"));
+                students.add(new Student(1, "Alice")); // Same id & name → duplicate
+
+                for (Student s : students) {
+                    System.out.println(s);
+                }
+            }
+        }
+
+14. Which is faster: HashSet or TreeSet? In what situations?
+
+
+HashSet is generally faster than TreeSet for most basic operations
+like add, remove, and search.
+
+HashSet uses a hash table internally,
+ so it offers average time complexity of O(1) (constant time) for these operations.
+
+TreeSet uses a balanced binary search tree (Red-Black Tree), 
+so it takes O(log n) time, which is slower compared to HashSet.
+
+
+
+15. If a TreeSet contains n elements, what is the average time complexity for inserting an element?
+
+O(log n)
+
+Finding the correct position in the tree → takes O(log n) time.
+
+Balancing the tree if needed → also O(log n) time.
+
+
+16. How do you implement the Comparable interface in Java?
+
+The Comparable interface is used to define natural ordering of objects.
+ (e.g., sorting by name, ID, etc.).
+
+-------------------------------------------
         What is the abstract method it includes?
+
+        public int compareTo(T o)
+
+        Input type: Object of the same class (e.g., Student)
+        Return type: int
+
+------------------------------------------
         What are the return and input types of that method?
-18. How do you use a TreeSet with elements that implement the Comparable interface?
-19. How do you create the following TreeSet instances:
+
+        | Return value     | Meaning                                   |
+| ---------------- | ----------------------------------------- |
+| `0`              | This object is **equal** to the other     |
+| `< 0` (negative) | This object is **less than** the other    |
+| `> 0` (positive) | This object is **greater than** the other |
+
+17. How do you use a TreeSet with elements that implement the Comparable interface?
+18. How do you create the following TreeSet instances:
     A TreeSet of integers
     A TreeSet of strings
     A TreeSet of Student objects, ordered by student name
-20. Given a list of student names and their scores, how would you:
-18. Store the data in a suitable collection
-19. Display the list in descending order of scores
-20. Which collection type would be most appropriate for this?
-21. You need to store a large number of unique product IDs and perform fast insertions and lookups. You do not require any sorting. Which Set implementation would you choose?
-22. You are building a student record system where the student names must be stored in sorted order (alphabetically) without duplicates. Which Set type should you use?
-23. A game application needs to keep track of items collected by the player. The order doesn’t matter, but duplicates are not allowed. What is the most efficient Set type?
-24. You want to maintain a list of cities for a travel recommendation feature, where cities should be displayed in alphabetical order. Which Set would best serve this need?
-25. In a voting system, you want to store the unique names of voters as they register. The priority is speed for checking if someone has already registered. Which Set type is appropriate?
-26. You’re creating a leaderboard where player names need to be shown in alphabetical order, and no duplicates are allowed. Which Set implementation should be used?
+19. Given a list of student names and their scores, how would you:
+20. Store the data in a suitable collection
+21. Display the list in descending order of scores
+22. Which collection type would be most appropriate for this?
+23. You need to store a large number of unique product IDs and perform fast insertions and lookups. You do not require any sorting. Which Set implementation would you choose?
+24. You are building a student record system where the student names must be stored in sorted order (alphabetically) without duplicates. Which Set type should you use?
+25. A game application needs to keep track of items collected by the player. The order doesn’t matter, but duplicates are not allowed. What is the most efficient Set type?
+26. You want to maintain a list of cities for a travel recommendation feature, where cities should be displayed in alphabetical order. Which Set would best serve this need?
+27. In a voting system, you want to store the unique names of voters as they register. The priority is speed for checking if someone has already registered. Which Set type is appropriate?
+28. You’re creating a leaderboard where player names need to be shown in alphabetical order, and no duplicates are allowed. Which Set implementation should be used?
 
