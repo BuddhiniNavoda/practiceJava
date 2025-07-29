@@ -1,0 +1,85 @@
+1. What is a deadlock in trading? 
+2. What is the wait-for graph? 
+3. How to identify deadlock usingthat graph?
+4. What are the techniques for avoiding deadlocks? 
+5. Can this cause a deadlock? if so how?
+public class BankAccount {
+	private long balance;
+
+	public BankAccount(long balance) {
+		this.balance = balance;
+	}
+	
+	static synchronized void transferFrom(BankAccount source,
+		BankAccount dest, long amount) {
+			source.balance -= amount;
+			dest.balance += amount
+	}
+
+}
+
+
+6. Can this cause a deadlock? if so how?
+public class BankAccount {
+	private long balance;
+
+	public BankAccount(long balance) {
+		this.balance = balance;
+	}
+	
+	static synchronized void transferFrom(BankAccount source,
+		BankAccount dest, long amount) {
+
+		synchronized(source){
+			synchronized(dest){
+				source.balance -= amount;
+				dest.balance += amount
+			}
+		}
+	}
+}
+
+
+7. Can this cause a deaklock? if so how?
+public class BankAccount {
+	private long balance;
+
+	public BankAccount(long balance) {
+		this.balance = balance;
+	}
+	
+	static synchronized void transferFrom(BankAccount source,
+		BankAccount dest, long amount) {
+			source.balance -= amount;
+			dest.balance += amount
+	}
+
+	public synchronized long balance() {
+		return balance;
+	}
+}
+
+
+8. what does do @ThreadSafe, @NotThreadSafe,  @GuardedBy and @Immutable annotaion do? Do they change behaviour of the program?
+9. Avoid the deadlock by following program, uring ordering?
+public class BankAccount {
+	private long balance;
+
+	public BankAccount(long balance) {
+		this.balance = balance;
+	}
+	
+	static synchronized void transferFrom(BankAccount source,
+		BankAccount dest, long amount) {
+
+		synchronized(source){
+			synchronized(dest){
+				source.balance -= amount;
+				dest.balance += amount
+			}
+		}
+	}
+}
+10. What is the advantage of using private lock?
+11. What is the wait() and notify() do? give a example?
+12. What is the difference between wait and sleep?
