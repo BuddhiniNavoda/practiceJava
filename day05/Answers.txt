@@ -12,6 +12,27 @@
 	used lamdha expression pass function as paramertes 
 	
 
+principle concepts of Functinal programming?
+	first class functions 
+		assign function as variables
+		pass function as parameters
+		return functionfrom other functions 
+
+
+	pure functions
+		 
+		 same input means always same Output
+		 has no side effects 
+
+	immutable data
+		onace a datastuctured is creaded , its contents cnt be modified,
+		instead of modify the original data , a new copy is created.
+		immutable string, immutable class, immutable ccollection
+
+	higher - order functions
+		take another function as arguments . return function as result
+		map, filter,reduce
+
 	 
 4. If we have an array called studentWeights, how can we convert it into a stream in Java?
 

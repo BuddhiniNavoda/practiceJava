@@ -69,7 +69,7 @@ t.start();
     }
 
     MyRunnable myRunnable = new MyRunnable();
-    Thread t = new Thread();
+    Thread t = new Thread(myRunnable);
     t.start();
 
 
@@ -89,13 +89,13 @@ t.start();
         System.out.println ("runnable is running")
      }
 
-    Thread t = new Thread();
+    Thread t = new Thread(runnable);
     t.start();
 
 
 
 9. Which is better to use: Runnable or extending the Thread class? 
-Runnable is preffered when we need thread pool or queue up runnable tasks easilt until a woeker is available
+Runnable is preffered when we need thread pool or queue up runnable tasks easilt until a woker is available
 
 10. What does it mean to terminate a thread? 
 
@@ -116,7 +116,7 @@ pub;ic void run (){
         }
     }
 
-    catch (InterruptedException){
+    catch (InterruptedException e ){
 
     }
 }
@@ -138,7 +138,7 @@ Runnable : in this state thread is call start() method and ready to run its depe
 Running : when thread scheduler select the thread , it move running state ,in this state therad run() method execute.
 
 
-wait()/ sleep() / Suspend() : from running state to waiting/ sleeping/blocking - call wait (), sleep(),suspend();
+wait/ sleep / Suspend : from running state to waiting/ sleeping/blocking - call wait (), sleep(),suspend();
 
                               from waiting/sleeping/blocking to Runnable - after waiting,sleepnig and bloacking state notify all the thread by using Notify(), NotifyAll()
 
@@ -146,15 +146,17 @@ Terminate : after complete executionof therad, thread goes to terminate state.
 
 16. What are the main challenges in using threads? 
 
+Race condition 
 Resource shareing problem
-deadlock
-syynchronization issue 
+deadlock 
+to be concurrency control
+synchronization issue 
 Thread Cycle management
 
 
 17. What is a race condition?  
 
-one or more therads share same resource at same time.
+one or more therads try to access same resource at same time.
 
 18. How do you avoid race conditions? (Explain the locking mechanism) 
 
@@ -178,18 +180,17 @@ Class Counter {
 
 
 19. What are the challenges of concurrency control:  
-    i) when there is poor control  : threads are acess and share data at a same time without pritection 
-resulte can be incorrect and unpredictable
+    i) when there is poor control  : threads are acess and share data at a same time without protection 
+resulte can be incorrect and unpredictable ()
 
-    ii) when there is over-control  : threads are blocked too much and too long because of too much or poorly managed locks.
-    As a result program can be slow and stuck
+    ii) when there is over-control  : liveness failure 
 
 20. What is the meaning of liveness failure?  
 The programe is stuck and cant make progress even through the sysytem is running
 
 21. Explain the differences between deadlock, livelock, and starvation.
 
-deadlock : 2 or more blocks are blaocked forever and  waiting for each other 
+deadlock : 2 or more thread are blocked forever and  waiting for each other 
 livelock : Threads are no block but keep responding  for each other 's  actions
 starvation ;   A thread wait for long time because other always get priority.(thread anable to gain access to shared data for a long time.)
 ----------------------------------------------------------------------------
@@ -197,8 +198,9 @@ starvation ;   A thread wait for long time because other always get priority.(th
  22. The following Java program increments a shared counter from multiple threads, but the result is inconsistent. Identify the race condition and fix the problem.
 
 class Counter {
-    public int count = 0;
-    public  synchronized void increment() {
+    private int count = 0;
+    public  void increment() {
+        
         count++;
     }
 }
@@ -238,7 +240,7 @@ class BankAccount {
         balance += amount;
     }
 
-    public synchronized int getBalance() {
+    public  int getBalance() {
         return balance;
     }
 }
