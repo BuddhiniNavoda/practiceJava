@@ -31,11 +31,8 @@ public class BankAccount {
 
 }
 
-yes , this cause to be a deadlock, because when bankaccount have 2 sharedaboject like A and B techniques
-thead 1 is transfer from A to B then thread 2 transefer from B to A . when both threads are execute and thread 1 start from A and thread 2 start from B 
- but to continue executtion  thread 1 want b and thread 2 want A. so therad 1 wait for B and thread 2 wait to get A. 
- in this situation call deadlock.
-thread 1 and thread 2 blocked forever and wating for each other.
+No , it doesnt chance to be deadlock because this method is declared static synchronized, 
+it mean it lock the class level , so only one thread can access at a time. 
 
 --------------------------------------------------------------------------------
 
@@ -58,7 +55,13 @@ public class BankAccount {
 		}
 	}
 }
+yes , this cause to be a deadlock, because when bankaccount have 2 sharedaboject like A and B techniques
+thead 1 is transfer from A to B then thread 2 transefer from B to A . when both threads are execute and thread 1 start from A and thread 2 start from B 
+ but to continue executtion  thread 1 want b and thread 2 want A. so therad 1 wait for B and thread 2 wait to get A. 
+ in this situation call deadlock.
+thread 1 and thread 2 blocked forever and wating for each other.
 
+--------------------------------------------------------------------------------------------------
 
 7. Can this cause a deaklock? if so how?
 public class BankAccount {
@@ -78,6 +81,13 @@ public class BankAccount {
 		return balance;
 	}
 }
+ no , this is not chnase to be a deadlock , because transferFrom is a static synchronized
+ method so it lock a class level lock. 
+
+ and balance is the instance method with synchronized it locks on the individual BankAccount instance
+
+ ------------------------------------------------------------------------------------
+
 
 
 8. what does do @ThreadSafe, @NotThreadSafe,  @GuardedBy and @Immutable annotaion do? Do they change behaviour of the program?
@@ -86,8 +96,7 @@ public class BankAccount {
 
 @NotThreadSafe : not design to be thread safe
 
-@GuardedBy : to specify the lock  
-
+@GuardedBy : annotated filed or methods must only be accessed when holding the specifield lock.
 @Immutable : marks classe  is Immutable, their state cant be modify.
 
 
@@ -95,16 +104,20 @@ public class BankAccount {
 
 public class BankAccount {
 	private long balance;
+	private final long id = SerialNumber.generateSerialNumber();
 
 	public BankAccount(long balance) {
 		this.balance = balance;
 	}
 	
-	static synchronized void transferFrom(BankAccount source,
+	static  void transferFrom(BankAccount source,
 		BankAccount dest, long amount) {
+			BankAccount first = source.id < dest.id ? source : dest 
+			BankAccount second = second == first ? dest : source
+		
 
-		synchronized(source){
-			synchronized(dest){
+		synchronized(first){
+			synchronized(second){
 				source.balance -= amount;
 				dest.balance += amount
 			}
@@ -122,3 +135,13 @@ notify () is use to nofify other threads and wokes up
 a single thread is already in wating state.
 
 12. What is the difference between wait and sleep?
+
+wait () : should call to object class
+		release the lock it holds.
+		make thread wait until anothrer thread calls notify() on the same object .
+		make call inside synchronized method or class
+
+
+sleep () : should call to therad.
+			pause the thread for miliseconds
+			doent release any locks, thread might be hold.
