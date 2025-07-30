@@ -1,0 +1,100 @@
+1. What is a code smell? Give a few common code smells.
+
+2. Is a code smell always a problem? Explain your answer with an example.
+
+3. What are the most common types of code duplication, and how can we fix them?
+
+4. What is the meaning of code refactoring? Does it change the behavior? What does it improve?
+
+5. Who can identify the following problems? (Compiler or static analysis tools)
+    - Type error
+    - Null pointer exception
+    - Unclosed files
+    - Undefined methods
+
+6. What is formal verification?
+
+7. What is testing? What is the goal of testing?
+
+8. Who can be testers?
+
+9. When should we test?
+
+10. How much should we test in practice? Select the correct statement:
+    - Every possible input (exhaustive testing)
+    - As much as possible until available resources run out
+
+11. What is the behavior of a quality test suite?
+
+12. What is the difference between black-box testing and white-box testing?
+
+13. If I want to check only functional correctness, not the implementation, what testing method should I select?
+
+14. If I want to check both functional correctness and structural analysis, what testing method should I use?
+
+15. What is the meaning of code coverage, and what are the main metrics of code coverage?
+
+16. I have the following code segment:
+
+method A() {
+    if (condition_1) {
+        branch_1
+    } else {
+        branch_2
+    }
+
+    if (condition_3) {
+        branch_3
+    } else {
+        branch_4
+    }
+}
+
+How can I achieve 100% coverage in the following categories?
+    i) Method
+    ii) Branch
+    iii) Path (if needed, use a flow diagram)
+
+17. What is statement coverage? What are its advantages and disadvantages?
+
+18. What are the minimum test value(s) for x required to test the following code?
+For:
+    i) Statement coverage
+    ii) Branch coverage
+
+public void check(int x) {
+    if (x > 0)                 // Line 2: decision
+        System.out.println("Positive");  // Line 3: statement
+    System.out.println("Done");          // Line 4: statement
+}
+
+19. Give one advantage and one disadvantage for each of the following:
+    - Statement coverage
+    - Branch coverage
+    - Path coverage
+
+20. What are the coverage metrics that won't touch loop holes?
+
+21. What is the meaning of static analysis? What kind of problems can it identify?
+
+22. Draw the lattice diagram and identify the null-pointer data flows for the following code:
+
+x = y = z = null
+
+if (condition1) {
+    x = 10
+    y = 2
+} else if (condition2) {
+    x = 2
+    z = 3
+} else {
+    y = 3
+}
+
+x.f()
+
+if (condition3) {
+    y.g()
+}
+
+z.h()
